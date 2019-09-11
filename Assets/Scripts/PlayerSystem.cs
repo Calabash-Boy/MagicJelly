@@ -73,24 +73,30 @@ public class PlayerSystem : MonoBehaviour
         }
         else if (cor.tag == "Barrier")
         {
-            Debug.Log("Barrier");
-            //碰到了障碍物 给一个反向上的速度
+            //Debug.Log("Barrier");
+            ////碰到了障碍物 给一个反向上的速度
             //Vector3 inverseV = new Vector3(0, 3, -speed * 2);
             //rigi.velocity = inverseV;
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
+    
 
-    }
+	private void OnTriggerEnter(Collider collision)
+	{
+		GameObject cor = collision.gameObject;
+		if(cor.tag == "Barrier")
+		{
+            Vector3 v = -transform.forward * (speed + 2);
+            v.y = 2;
+			//碰到了障碍物 给一个反向上的速度
+			Vector3 inverseV = v;
+			rigi.velocity = inverseV;
+		}
+	}
 
-    private void OnCollisionExit(Collision collision)
-    {
 
-    }
-
-    IEnumerator PlayerRotation(Quaternion target_rotation, float time, float delayTime, Vector3 axis, Vector3 targetP)
+	IEnumerator PlayerRotation(Quaternion target_rotation, float time, float delayTime, Vector3 axis, Vector3 targetP)
     {
         yield return new WaitForSeconds(delayTime);
 

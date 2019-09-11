@@ -23,7 +23,7 @@ public class RigiDemo : MonoBehaviour
     IEnumerator Force()
     {
         yield return new WaitForSeconds(2.0f);
-        Debug.Log("Explosion");
+        //Debug.Log("Explosion");
         //rigi.AddExplosionForce(force, position, circle);
         rigi.AddForceAtPosition(new Vector3(0, 0, force), this.transform.position, ForceMode.Impulse);
     }
