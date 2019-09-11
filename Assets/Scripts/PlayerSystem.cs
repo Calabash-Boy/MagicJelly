@@ -104,7 +104,7 @@ public class PlayerSystem : MonoBehaviour
         Debug.Log("rotation");
         speed = 0;
         float timer = 0;
-        rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        //rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         while (timer <= time)
         {
             timer += Time.fixedDeltaTime;
@@ -117,7 +117,7 @@ public class PlayerSystem : MonoBehaviour
                 transform.rotation = target_rotation;
                 transform.position = targetP;
 
-                rigi.constraints = RigidbodyConstraints.FreezeRotation;
+                //rigi.constraints = RigidbodyConstraints.FreezeRotation;
 
             }
 
