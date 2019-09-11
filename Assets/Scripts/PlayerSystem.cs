@@ -50,7 +50,8 @@ public class PlayerSystem : MonoBehaviour
         }
         else if (cor.tag == "Corner")
         {
-            //Debug.Log("Enter Corner");
+            
+            Debug.Log("Enter Corner");
             //获取要旋转的正方向
             float angle = Vector3.Angle(transform.forward, direction);
             Vector3 normal = Vector3.Cross(transform.forward, direction);//叉乘求出法线向量
@@ -100,18 +101,24 @@ public class PlayerSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
 
+        Debug.Log("rotation");
         speed = 0;
         float timer = 0;
+        rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         while (timer <= time)
         {
             timer += Time.fixedDeltaTime;
             this.transform.RotateAround(axis, Vector3.up, rSpeed * Time.fixedDeltaTime);
             if (timer >= time)
             {
+                Debug.Log("timer: " + timer + "time: " + time);
                 //最后一帧修复偏差
                 speed = 5;
                 transform.rotation = target_rotation;
                 transform.position = targetP;
+
+                rigi.constraints = RigidbodyConstraints.FreezeRotation;
+
             }
 
             yield return new WaitForFixedUpdate();
